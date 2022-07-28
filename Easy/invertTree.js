@@ -12,4 +12,30 @@
  */
 const invertTree = function (root) {
   
+  const reverseNodes = (node) => {
+    if (node === null) return;
+    reverseNodes(node.left);
+    reverseNodes(node.right);
+
+    let tempNode = node.left;
+    node.left = node.right;
+    node.right = tempNode;
+  };
+
+  reverseNodes(root);
+  return root;
+
+  // let stack = [root];
+  // while (stack.length > 0) {
+  //   let node = stack.pop();
+  //   if (node !== null) {
+  //     let tempNode = node.left;
+  //     node.left = node.right;
+  //     node.right = tempNode;
+
+  //     stack.push(node.left);
+  //     stack.push(node.right);
+  //   }
+  // }
+  // return root;
 };
