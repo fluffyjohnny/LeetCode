@@ -1,15 +1,38 @@
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
 const addTwoNumbers = function (l1, l2) {
-  const reversedArr = (arr) => {
+  let carry = 0;
+  let previousNode = new ListNode();
 
-    return arr.reverse().join().replace(/,/g, "");
-    
-  };
+  const headNode = previousNode;
 
-  const reversedL1 = Number(reversedArr(l1));
-  const reversedL2 = Number(reversedArr(l2));
-  const sum = reversedL1 + reversedL2;
-
-  return sum.toString().split("");
+  while (l1 || l2 || carry) {
+    let val1 = 0;
+    let val2 = 0;
+    if (l1) {
+      val1 = l1.val;
+      l1 = l1.next;
+    }
+    if (l2) {
+      val2 = l2.val;
+      l2 = l2.next;
+    }
+    const sum = val1 + val2 + carry;
+    carry = Math.floor(sum / 10);
+    const digit = sum % 10;
+    const currentNode = new ListNode(digit);
+    previousNode.next = currentNode;
+    previousNode = currentNode;
+  }
+  return headNode.next;
 };
-
-console.log(addTwoNumbers([1, 2, 3], [4, 5, 6]));
