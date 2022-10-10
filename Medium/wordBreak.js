@@ -20,7 +20,6 @@ const wordBreak = function(s, wordDict) {
           q.push(end);
         }
       }
-      console.log(start)
       visited.add(start);
     }
   }
