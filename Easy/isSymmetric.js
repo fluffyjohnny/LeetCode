@@ -20,7 +20,7 @@ const isSymmetric = function (root) {
     return (
       left.val === right.val &&
       isMirrored(left.left, right.right) &&
-      isMirrored(left.rigrht, right.left)
+      isMirrored(left.right, right.left)
     );
   };
   // traverse
